@@ -25,28 +25,28 @@ public class FindThePrize {
         return new FindThePrize(numberOfOptions, numberOfPrizes, numberOfRounds);
     }
 
-    public int getNumberOfPoints() {
+    int getNumberOfPoints() {
         return numberOfPoints;
     }
 
 
     //Initializing new round and setting prizes on random positions
-    public void newRound() {
+    void newRound() {
         for (int i = 0; i <= numberOfPrizes; i++) {
             int number = new Random().nextInt(this.gameSequence.size());
             this.gameSequence.set(number, false);
         }
     }
-    public boolean guess(int index) {
+    boolean guess(int index) {
         return this.gameSequence.get(index-1);
     }
 
-    public void addPoint() {
+    void addPoint() {
         this.numberOfPoints--;
     }
 
     //playing one round and adding points if needed
-    public boolean playRound(int roundGuess) {
+    boolean playRound(int roundGuess) {
         this.newRound();
         boolean currentRoundGuess = this.guess(roundGuess);
 
