@@ -14,7 +14,7 @@ public class FindThePrize {
     private FindThePrize(int numberOfOptions, int numberOfPrizes, int numberOfRounds) {
         this.numberOfPrizes = numberOfPrizes;
         this.numberOfRounds = numberOfRounds;
-        this.gameSequence= new ArrayList<>(Arrays.asList(new Boolean[numberOfOptions-1]))
+        this.gameSequence = new ArrayList<>(Arrays.asList(new Boolean[numberOfOptions-1]))
                                 .stream()
                                 .map(i -> true).collect(Collectors.toList());
     }
