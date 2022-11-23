@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 public class FindThePrize {
     private final int numberOfPrizes;
     private final int numberOfRounds;
-
     private int numberOfPoints;
     //gameSequence is list of possible choices in game for that round
     private final List<Boolean> gameSequence;
@@ -70,5 +69,14 @@ public class FindThePrize {
         }
 
         return this.numberOfPoints;
+    }
+
+    //for testing
+    int getNumberOfPrizes() {
+        return numberOfPrizes;
+    }
+
+    List<Boolean> getGameSequence() {
+        return gameSequence;
     }
 }
