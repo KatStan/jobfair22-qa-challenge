@@ -10,18 +10,25 @@ public class FindThePrize {
     //gameSequence is list of possible choices in game for that round
     private final List<Boolean> gameSequence;
 
-    private FindThePrize(int numberOfOptions, int numberOfPrizes, int numberOfRounds) {
+    private final Random rand;
+
+
+    private FindThePrize(int numberOfOptions, int numberOfPrizes, int numberOfRounds, Random rand) {
         this.numberOfPrizes = numberOfPrizes;
         this.numberOfRounds = numberOfRounds;
         this.gameSequence = new ArrayList<>(Arrays.asList(new Boolean[numberOfOptions-1]))
-                                .stream()
-                                .map(i -> true).collect(Collectors.toList());
+                .stream()
+                .map(i -> true).collect(Collectors.toList());
+        this.rand = rand;
     }
-
     //Function for initializing new game.
     // Game is configurable, so it can contain multiple options for player to guess, but also multiple prizes
     public static FindThePrize init(int numberOfOptions, int numberOfPrizes, int numberOfRounds) {
-        return new FindThePrize(numberOfOptions, numberOfPrizes, numberOfRounds);
+        return new FindThePrize(numberOfOptions, numberOfPrizes, numberOfRounds, new Random());
+    }
+
+    public static FindThePrize init(int numberOfOptions, int numberOfPrizes, int numberOfRounds, Random rand) {
+        return new FindThePrize(numberOfOptions, numberOfPrizes, numberOfRounds, rand);
     }
 
     int getNumberOfPoints() {
@@ -32,7 +39,7 @@ public class FindThePrize {
     //Initializing new round and setting prizes on random positions
     void newRound() {
         for (int i = 0; i <= numberOfPrizes; i++) {
-            int number = new Random().nextInt(this.gameSequence.size());
+            int number = rand.nextInt(this.gameSequence.size());
             this.gameSequence.set(number, false);
         }
     }
