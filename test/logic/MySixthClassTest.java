@@ -1,9 +1,5 @@
 package logic;
 
-/*
-* novi init
- *   za play game*/
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -17,6 +13,9 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
+/*new init
+ *   for playing the game
+ */
 public class MySixthClassTest {
     int numberOfOptions = 4, numberOfPrizes = 2, numberOfRounds = 3;
     FindThePrize game;
@@ -30,15 +29,14 @@ public class MySixthClassTest {
         randomMock = mock(Random.class, withSettings().withoutAnnotations());
         game = FindThePrize.init(numberOfOptions, numberOfPrizes, numberOfRounds, randomMock);
 
-
     }
 
     @Test
     public void gamePlayLosesAtFirstTry() {
         //loses at the first try
-        when(randomMock.nextInt(anyInt())) //ubaci 3 negde
-                .thenReturn(1) //za prvi for loop tj. 1/3 round
-                .thenReturn(0);
+        when(randomMock.nextInt(anyInt()))
+                .thenReturn(1).thenReturn(0); //first for loop i.e. 1/3 round
+
 
         guesses = new ArrayList<>(Arrays.asList(4, 2, 1));
         int gameplay = game.playGame(guesses);
@@ -50,11 +48,10 @@ public class MySixthClassTest {
     @Test
     public void gamePlayGetsFirstLosesAtSecond() {
         //gets the first one, loses at the second
-        when(randomMock.nextInt(anyInt())) //ubaci 3 negde
-                .thenReturn(1) //pocinje sledeci game, za prvi for loop tj. 1/3 round
-                .thenReturn(1)
-                .thenReturn(1) //za drugi for loop tj. 2/3 round
-                .thenReturn(0);
+        when(randomMock.nextInt(anyInt()))
+                .thenReturn(1).thenReturn(1) //first for loop i.e. 1/3 round
+                .thenReturn(1).thenReturn(0); //second for loop i.e. 2/3 round
+
 
         guesses = new ArrayList<>(Arrays.asList(2, 3, 1));
         int gameplay = game.playGame(guesses);
@@ -66,21 +63,17 @@ public class MySixthClassTest {
     @Test
     public void gamePlayGetsAll() {
         //gets all three
-        when(randomMock.nextInt(anyInt())) //ubaci 3 negde
-                .thenReturn(2) //pocinje sledeci game, za prvi for loop tj. 1/3 round
-                .thenReturn(1)
-                .thenReturn(3) //za drugi for loop tj. 2/3 round
-                .thenReturn(2)
-                .thenReturn(3) //za treci for loop tj. 3/3 round
-                .thenReturn(0);
+        when(randomMock.nextInt(anyInt()))
+                .thenReturn(2).thenReturn(1) //first for loop i.e. 1/3 round
+                .thenReturn(3).thenReturn(2) //second for loop i.e. 2/3 round
+                .thenReturn(3).thenReturn(0); //third for loop i.e. 3/3 round
+
         guesses = new ArrayList<>(Arrays.asList(2, 3, 1));
         int gameplay = game.playGame(guesses);
         assertEquals(gameplay, game.getNumberOfPoints());
         assertEquals(3, game.getNumberOfPoints());
 
     }
-
-
 
 
 }

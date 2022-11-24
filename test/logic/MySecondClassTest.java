@@ -1,16 +1,16 @@
 package logic;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /*
- * novi init
- *   da li je gamesequence list of trues duzine numberofoptions
- *   getnumberofpoints treba da vrati 0
- *   guess od prvog elementa terba vrati true sada; index je misleading name
- *   pozoves addpoint i treba da vrati 1
+ * new init
+ *   is gamesequence list of trues of length numberofoptions
+ *   getnumberofpoints needs to be 0 now
+ *   guess[0] = true now; index might be a misleading name?
+ *   call addpoint -> should return 1
  */
 public class MySecondClassTest {
     int numberOfOptions = 5, numberOfPrizes = 3, numberOfRounds = 2;
@@ -28,7 +28,7 @@ public class MySecondClassTest {
 
     @Test
     public void returningGuess() {
-        assertEquals(true, game.guess(1));
+        assertTrue(game.guess(1));
     }
 
     @Test

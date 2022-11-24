@@ -1,9 +1,9 @@
 package logic;
 
 /*
-*    novi init
- *   test playround za true i false po jedno
-* */
+ * new init
+ *   test playround for true and false
+ * */
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
@@ -32,20 +32,19 @@ public class MyFifthClassTest {
         randomMock = mock(Random.class, withSettings().withoutAnnotations());
         game = FindThePrize.init(numberOfOptions, numberOfPrizes, numberOfRounds, randomMock);
         when(randomMock.nextInt(anyInt()))
-                .thenReturn(0)
-                .thenReturn(0)//za prvi for loop tj. 1/2 round
-                .thenReturn(3)
-                .thenReturn(2); //za drugi for loop tj. 2/2 round
+                .thenReturn(0).thenReturn(0) //first for loop i.e. 1/2 round
+                .thenReturn(3).thenReturn(2); //second loop i.e. 2/2 round
+
     }
 
     @Test
     public void playingRounds() {
         boolean currentRoundGuess = game.playRound(guesses.get(0));
         assertEquals(1, game.getNumberOfPoints());
-        assertEquals(false, currentRoundGuess);
+        assertFalse(currentRoundGuess);
         currentRoundGuess = game.playRound(guesses.get(1));
         assertEquals(1, game.getNumberOfPoints());
-        assertEquals(true, currentRoundGuess);
+        assertTrue(currentRoundGuess);
 
     }
 }

@@ -39,7 +39,7 @@ public class FindThePrize {
     //Initializing new round and setting prizes on random positions
     void newRound() {
         //refresh gameSequence, so it doesn't hold information from last round
-        this.gameSequence.replaceAll(ignored -> true);
+        Collections.fill(this.gameSequence, true);
 
         for (int i = 0; i < this.numberOfPrizes; i++) {
             int number = rand.nextInt(this.gameSequence.size());
@@ -96,10 +96,6 @@ public class FindThePrize {
     }
 
     //for testing
-    int getNumberOfPrizes() {
-        return numberOfPrizes;
-    }
-
     List<Boolean> getGameSequence() {
         return gameSequence;
     }

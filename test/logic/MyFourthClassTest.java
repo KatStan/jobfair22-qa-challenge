@@ -2,9 +2,7 @@ package logic;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Random;
 
@@ -13,13 +11,12 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 
-/*after init, za pocetak gameplay:
- *       zapocnes gameplay: treba da se mock random generator -> ne moram pravi @Mock zar ne? ipak mora, moras kazes sta funkcija nexInt vraca ili sta vec
- *       treba da se izmedju svakog round refresh gamesequence na sve true, provera:
- *       newround() sa odredjenim random, proveri je l su samo ti stavljeni a prizes
- *       opet newround, uraditi isto sa proverom, ali novi random vraca disjunktni skup brojeva
- *       u odnosu na malopre -> mora se za mock za random generator staviti u konstruktoru
- *       i koristiti polje rand
+/* after init, for starting gameplay: new init here, points are corrupted from just before
+ *   start gameplay: need to mock random generator -> Don't need @Mock? yes you do, must say what function nexInt returns
+ *       between each round, gamesequence needs resetting to all true, how to check it:
+ *       newround() with certain mock random, check whether only those are put as prizes (to false)
+ *       next newround, same check, but new mock random holds a non-overlapping set of numbers with before
+ *       knowing this -> mock random generator must be in constructor and use that field
 * */
 
 public class MyFourthClassTest {
@@ -34,10 +31,9 @@ public class MyFourthClassTest {
         randomMock = mock(Random.class, withSettings().withoutAnnotations());
         game = FindThePrize.init(numberOfOptions, numberOfPrizes, numberOfRounds, randomMock);
         when(randomMock.nextInt(anyInt()))
-                .thenReturn(0)
-                .thenReturn(2)//za prvi for loop tj. 1/2 round
-                .thenReturn(1)
-                .thenReturn(3); //za drugi for loop tj. 2/2 round
+                .thenReturn(0).thenReturn(2) //first for loop i.e. 1/2 round
+                .thenReturn(1).thenReturn(3); //second loop i.e. 2/2 round
+
     }
 
     @Test

@@ -14,9 +14,8 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 
-/*after init, za pocetak gameplay:
- *   mora biti guesses duzine numberofrounds, kako se handle kad nije (implementacija resava kad
- *   je duze od rounds, ali krace? Neka ide do tog kraceg)
+/* after init, for starting gameplay: new init here, points are corrupted from just before
+ *   guesses must be length of numberorounds, how to handle when it's not
  */
 public class MyThirdClassTest {
     int numberOfOptions = 4, numberOfPrizes = 3, numberOfRounds = 3;
@@ -32,12 +31,10 @@ public class MyThirdClassTest {
         randomMock = mock(Random.class, withSettings().withoutAnnotations());
         game = FindThePrize.init(numberOfOptions, numberOfPrizes, numberOfRounds, randomMock);
         when(randomMock.nextInt(anyInt()))
-                .thenReturn(0) //za prvi for loop tj. 1/3 round
-                .thenReturn(2)
-                .thenReturn(3) //za drugi for loop tj. 2/3 round
-                .thenReturn(0)
-                .thenReturn(1) //za treci for loop tj. 3/3 round
-                .thenReturn(3);
+                .thenReturn(0).thenReturn(2) //first for loop i.e. 1/3 round
+                .thenReturn(3).thenReturn(0) //second for loop i.e. 2/3 round
+                .thenReturn(1).thenReturn(3); //third for loop i.e. 3/3 round
+
     }
     @Test
     public void successfulGame() {

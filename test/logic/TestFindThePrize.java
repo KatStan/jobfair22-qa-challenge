@@ -22,23 +22,23 @@ public class TestFindThePrize {
     //then on code for any additional tests
 
     /*
-     * stvari koji moraju da se test:
-     * novi init
-     *   da li je gamesequence list of trues duzine numberofoptions
-     *   getnumberofpoints treba da vrati 0
-     *   guess od prvog elementa terba vrati true sada; index je misleading name
-     *   pozoves addpoint i treba da vrati 1
-     * after init, za pocetak gameplay: ovde treba nov init, points su corrupted od malopre
-     *   mora biti guesses duzine numberorounds, kako se handle kad nije
-     *   zapocnes gameplay: treba da se mock random generator -> ne moram pravi @Mock zar ne? ipak mora, moras kazes sta funkcija nexInt vraca ili sta vec
-     *       treba da se izmedju svakog round refresh gamesequence na sve true, provera:
-     *       newround() sa odredjenim random, proveri je l su samo ti stavljeni a prizes
-     *       opet newround, uraditi isto sa proverom, ali novi random vraca disjunktni skup brojeva
-     *       u odnosu na malopre -> mora se za mock za random generator staviti u konstruktoru
-     * novi init
-     *   test playround za true i false po jedno
-     * novi init
-     *   za play game
+     * things needed to be tested:
+     * new init
+     *   is gamesequence list of trues of length numberofoptions
+     *   getnumberofpoints needs to be 0 now
+     *   guess[0] = true now; index might be a misleading name?
+     *   call addpoint -> should return 1
+     * after init, for starting gameplay: new init here, points are corrupted from just before
+     *   guesses must be length of numberorounds, how to handle when it's not
+     *   start gameplay: need to mock random generator -> Don't need @Mock? yes you do, must say what function nexInt returns
+     *       between each round, gamesequence needs reseting to all true, how to check it:
+     *       newround() with certain mock random, check whether only those are put as prizes (to false)
+     *       next newround, same check, but new mock random holds a non-overlapping set of numbers with before
+     *       knowing this -> mock random generator must be in constructor
+     * new init
+     *   test playround for true and false
+     * new init
+     *   for playing the game
      * */
 
 }
