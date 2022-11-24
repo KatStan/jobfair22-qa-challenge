@@ -73,7 +73,7 @@ public class FindThePrize {
        * maximum number of points for the first n rounds the user
        * can win */
         int actualRounds = Math.min(this.numberOfRounds,roundGuesses.size());
-        for (int i = 0; i < this.numberOfRounds; i++) {
+        for (int i = 0; i < actualRounds; i++) {
             int roundGuess = roundGuesses.get(i);
             /*
             "the player gets to pick one option out of multiple
