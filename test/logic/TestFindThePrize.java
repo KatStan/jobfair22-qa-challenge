@@ -6,7 +6,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        MyClassTest.class,
         MySecondClassTest.class,
         MyThirdClassTest.class,
         MyFourthClassTest.class,
@@ -24,9 +23,6 @@ public class TestFindThePrize {
 
     /*
      * stvari koji moraju da se test:
-     * prilikom init:
-     *   mora biti number of prizes <= number of options, tj. kako se handle kad nije tako -> dodje ekvivalent
-     *   da su svi options false, tj. svi su prizes => numPrizes = numOptions -> assert that
      * novi init
      *   da li je gamesequence list of trues duzine numberofoptions
      *   getnumberofpoints treba da vrati 0

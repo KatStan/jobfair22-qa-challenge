@@ -16,7 +16,7 @@ public class FindThePrize {
     private FindThePrize(int numberOfOptions, int numberOfPrizes, int numberOfRounds, Random rand) {
         this.numberOfPrizes = numberOfPrizes;
         this.numberOfRounds = numberOfRounds;
-        this.gameSequence = new ArrayList<>(Arrays.asList(new Boolean[numberOfOptions-1]))
+        this.gameSequence = new ArrayList<>(Arrays.asList(new Boolean[numberOfOptions]))
                 .stream()
                 .map(i -> true).collect(Collectors.toList());
         this.rand = rand;
@@ -32,13 +32,16 @@ public class FindThePrize {
     }
 
     int getNumberOfPoints() {
-        return numberOfPoints;
+        return this.numberOfPoints;
     }
 
 
     //Initializing new round and setting prizes on random positions
     void newRound() {
-        for (int i = 0; i <= numberOfPrizes; i++) {
+        //refresh gameSequence, so it doesn't hold information from last round
+        this.gameSequence.replaceAll(ignored -> true);
+
+        for (int i = 0; i < this.numberOfPrizes; i++) {
             int number = rand.nextInt(this.gameSequence.size());
             this.gameSequence.set(number, false);
         }
@@ -48,7 +51,7 @@ public class FindThePrize {
     }
 
     void addPoint() {
-        this.numberOfPoints--;
+        this.numberOfPoints++;
     }
 
     //playing one round and adding points if needed
@@ -65,10 +68,13 @@ public class FindThePrize {
 
     //Game core loop. This function gets guesses for every round in game
     public int playGame(List<Integer> roundGuesses) {
-
-        for (int i = 0; i <= this.numberOfRounds; i++) {
+       /*
+       * if user provides fewer guesses than rounds, then that's the
+       * maximum number of points for the first n rounds the user
+       * can win */
+        int actualRounds = Math.min(this.numberOfRounds,roundGuesses.size());
+        for (int i = 0; i < this.numberOfRounds; i++) {
             int roundGuess = roundGuesses.get(i);
-
             /*
             "the player gets to pick one option out of multiple
              options and if he picks the right one he gets a reward,
