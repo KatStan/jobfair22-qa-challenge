@@ -1,10 +1,5 @@
 package logic;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -14,7 +9,9 @@ import org.junit.runners.Suite.SuiteClasses;
         MyClassTest.class,
         MySecondClassTest.class,
         MyThirdClassTest.class,
-        MyFourthClassTest.class})
+        MyFourthClassTest.class,
+        MyFifthClassTest.class,
+        MySixthClassTest.class})
 
 public class TestFindThePrize {
 

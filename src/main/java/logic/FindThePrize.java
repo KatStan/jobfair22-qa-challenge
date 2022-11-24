@@ -69,12 +69,23 @@ public class FindThePrize {
         for (int i = 0; i <= this.numberOfRounds; i++) {
             int roundGuess = roundGuesses.get(i);
 
+            /*
+            "the player gets to pick one option out of multiple
+             options and if he picks the right one he gets a reward,
+             if not he is out of the game" -> this doesn't insinuate
+             that he loses everything up until that point
+             The implementation wouldn't need the numberOfPoints, nor
+             adding points at all if it were an all-or-nothing type of
+             game (returning either 0 or the numberOfRounds) -> assumption:
+             player gets what he earned up until that point
+             */
             boolean didWinRound = this.playRound(roundGuess);
+
             if(didWinRound) {
-                return 0;
+               // return 0;
+                break;
             }
         }
-
         return this.numberOfPoints;
     }
 

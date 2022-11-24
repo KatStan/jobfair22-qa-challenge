@@ -21,12 +21,10 @@ import static org.mockito.Mockito.*;
  *       u odnosu na malopre -> mora se za mock za random generator staviti u konstruktoru
  *       i koristiti polje rand
 * */
-//@RunWith(MockitoJUnitRunner.class)
+
 public class MyFourthClassTest {
     int numberOfOptions = 4, numberOfPrizes = 2, numberOfRounds = 2;
     FindThePrize game;
-//    List<Integer> guesses = new ArrayList<>(
-//            Arrays.asList(1, 2));
 
     @Mock
     private Random randomMock;
